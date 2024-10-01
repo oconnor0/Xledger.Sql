@@ -18,7 +18,7 @@ jobs:
       - run: dotnet build --configuration Release Xledger.Sql
       - run: dotnet pack --configuration Release Xledger.Sql
       # https://learn.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli
-      # Can use https://apiint.nugettest.org/v3/index.json for testing.
-      - run: dotnet nuget push Xledger.Sql/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
+      # - run: dotnet nuget push Xledger.Sql/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
+      - run: dotnet nuget push Xledger.Sql/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://apiint.nugettest.org/v3/index.json
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
