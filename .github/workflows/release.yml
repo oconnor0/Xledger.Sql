@@ -20,10 +20,10 @@ jobs:
       - run: echo $version
       - run: echo ${version:1}
       # - run: case "$version" in v*) true;; *) echo "Git tag must start with a 'v'"; false;; esac
-      - run: export version=${version:1}
-      - run: echo $version
-      - run: dotnet build /p:VersionPrefix="${version:1}" --configuration Release Xledger.Sql
-      - run: dotnet pack /p:VersionPrefix="${version:1}" --configuration Release Xledger.Sql
+      # - run: export version=${version:1}
+      # - run: echo $version
+      - run: dotnet build /p:VersionPrefix=${version:1} --configuration Release Xledger.Sql
+      - run: dotnet pack /p:VersionPrefix=${version:1} --configuration Release Xledger.Sql
       # https://learn.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli
       # - run: dotnet nuget push Xledger.Sql/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
       - run: dotnet nuget push Xledger.Sql/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://apiint.nugettest.org/v3/index.json
