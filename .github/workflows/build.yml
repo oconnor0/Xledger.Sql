@@ -1,8 +1,8 @@
 name: Build .NET assemblies and test
 
 on:
-  push:
-    branches: [ "master" ]
+  # push:
+  #   branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
