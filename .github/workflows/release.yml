@@ -15,13 +15,14 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - run: case "${version}" in v*) true;; *) false;; esac
-      - run: echo "${version:1}"
-      # - run: dotnet build /p:VersionPrefix="$version" --configuration Release Xledger.Sql
-      # - run: dotnet pack /p:VersionPrefix="$version" --configuration Release Xledger.Sql
-      # # https://learn.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli
-      # # - run: dotnet nuget push Xledger.Sql/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
-      # - run: dotnet nuget push Xledger.Sql/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://apiint.nugettest.org/v3/index.json
+      - run: case "${version}" in v*) true;; *) echo "Git tag must start with a 'v'"; false;; esac
+      - run: export version="${version:1}"
+      - run: echo "${version}"
+      - run: dotnet build /p:VersionPrefix="$version" --configuration Release Xledger.Sql
+      - run: dotnet pack /p:VersionPrefix="$version" --configuration Release Xledger.Sql
+      # https://learn.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli
+      # - run: dotnet nuget push Xledger.Sql/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
+      - run: dotnet nuget push Xledger.Sql/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://apiint.nugettest.org/v3/index.json
         env:
           version: ${{ github.event.release.tag_name }}
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
