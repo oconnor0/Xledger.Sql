@@ -20,7 +20,7 @@ jobs:
       - run: dotnet build --configuration Release Xledger.Sql
       - run: dotnet pack --configuration Release Xledger.Sql
       # https://learn.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli
-      - run: dotnet nuget push Xledger.Sql/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://apiint.nugettest.org/v3/index.json
+      - run: dotnet nuget push Xledger.Sql/bin/Release/*.nupkg --source https://apiint.nugettest.org/v3/index.json
         env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_API_KEY }}
       # dotnet nuget push Contoso.08.28.22.001.Test.1.0.0.nupkg --api-key qz2jga8pl3dvn2akksyquwcs9ygggg4exypy3bhxy6w6x6 --source https://api.nuget.org/v3/index.json
