@@ -15,10 +15,10 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - run: echo "${version}"
-      - run: case "${version}" in v*) true;; *) echo "Git tag must start with a 'v'"; false;; esac
+      - run: echo "$version"
+      - run: case "$version" in v*) true;; *) echo "Git tag must start with a 'v'"; false;; esac
       - run: export version="${version:1}"
-      - run: echo "${version}"
+      - run: echo "$version"
       - run: dotnet build /p:VersionPrefix="$version" --configuration Release Xledger.Sql
       - run: dotnet pack /p:VersionPrefix="$version" --configuration Release Xledger.Sql
       # https://learn.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli
