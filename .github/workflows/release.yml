@@ -10,6 +10,8 @@ jobs:
     permissions:
       packages: write
       contents: read
+    env:
+      version: ${{ github.event.release.tag_name }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -25,5 +27,4 @@ jobs:
       # - run: dotnet nuget push Xledger.Sql/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
       - run: dotnet nuget push Xledger.Sql/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://apiint.nugettest.org/v3/index.json
         env:
-          version: ${{ github.event.release.tag_name }}
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
