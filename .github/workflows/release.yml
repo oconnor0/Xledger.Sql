@@ -15,6 +15,7 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+      - run: case "${version}" in v*) true;; *) false;; esac
       - run: echo "${version:1}"
       # - run: dotnet build /p:VersionPrefix="$version" --configuration Release Xledger.Sql
       # - run: dotnet pack /p:VersionPrefix="$version" --configuration Release Xledger.Sql
