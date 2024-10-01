@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - run: echo $version
+      - run: echo ${version:1}
       # - run: dotnet build /p:VersionPrefix="$version" --configuration Release Xledger.Sql
       # - run: dotnet pack /p:VersionPrefix="$version" --configuration Release Xledger.Sql
       # # https://learn.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli
