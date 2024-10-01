@@ -7,9 +7,9 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    # permissions:
-    #   packages: write
-    #   contents: read
+    permissions:
+      packages: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
